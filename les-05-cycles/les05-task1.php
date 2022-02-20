@@ -1,33 +1,35 @@
 <?php
 /* -----------------------------------------------------
  * 
- * Course: PHP Start | Theory (by Victor Zinchenko)
+ * @course: PHP Start | Theory (by Victor Zinchenko)
  * 
- * Lesson 4. Conditional operators. 
- * https://php-start.com/lesson/php-start-theory/data-types
+ * @lesson 5. Cycles. 
+ * @link: https://php-start.com/lesson/php-start-theory/cycles
  * 
- * Task 1. Occurrence of a number to a range.
+ * @task 1. Sum.
  * 
- * Student: Oleg Baranchikov (boeinfo@ya.ru)
- * Date: 20.02.2022
+ * @author: Oleg Baranchikov (boeinfo@ya.ru)
+ * @date: 20.02.2022
  * 
- * Materials:
- * https://www.php.net/manual/ru/language.control-structures.php
+ * @link: https://www.php.net/manual/ru/control-structures.for.php
+ * @link: https://www.php.net/manual/ru/control-structures.while.php
  * 
  * -----------------------------------------------------
  */
 
-const MIN = 10;
-const MAX = 50;
+for($i=1,$s=0; $i<=25; $i++){
+    $s+=$i;
+}
+echo $s;
+echo "<br>";
 
-$x = 10;
 
+$i=1; $s=0;
 
-if ($x > MIN AND $x < MAX) {
-    echo "+";
-} elseif ($x == MIN OR $x == MAX) {
-    echo "+-";
-} else {
-    echo "-";
+while($i<=25){
+   $s+=$i;
+   $i++;
 }
 
+echo $s;
+echo "<br>";

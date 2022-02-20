@@ -1,33 +1,28 @@
 <?php
 /* -----------------------------------------------------
  * 
- * Course: PHP Start | Theory (by Victor Zinchenko)
+ * @course: PHP Start | Theory (by Victor Zinchenko)
  * 
- * Lesson 4. Conditional operators. 
- * https://php-start.com/lesson/php-start-theory/data-types
+ * @lesson 5. Cycles. 
+ * @link: https://php-start.com/lesson/php-start-theory/cycles
  * 
- * Task 1. Occurrence of a number to a range.
+ * @task 2. Squares of numbers.
  * 
- * Student: Oleg Baranchikov (boeinfo@ya.ru)
- * Date: 20.02.2022
+ * @author: Oleg Baranchikov (boeinfo@ya.ru)
+ * @date: 20.02.2022
  * 
- * Materials:
- * https://www.php.net/manual/ru/language.control-structures.php
+ * @link: https://www.php.net/manual/ru/control-structures.do.while.php
  * 
  * -----------------------------------------------------
  */
 
-const MIN = 10;
-const MAX = 50;
+$num = 10;
 
-$x = 10;
+$i = 1; $q = 1;
+do {
+    echo "Квадрат числа $i равен {$q}.<br>"; 
+    $i++; 
+    $q = pow($i, 2);          
+} while($q <= $num);
 
-
-if ($x > MIN AND $x < MAX) {
-    echo "+";
-} elseif ($x == MIN OR $x == MAX) {
-    echo "+-";
-} else {
-    echo "-";
-}
-
+echo "<hr>Величина большего квадрата не превышает {$num}.<br>";
