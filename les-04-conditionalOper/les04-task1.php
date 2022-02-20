@@ -3,46 +3,31 @@
  * 
  * Course: PHP Start | Theory (by Victor Zinchenko)
  * 
- * Lesson 3. Data type. 
+ * Lesson 4. Conditional operators. 
  * https://php-start.com/lesson/php-start-theory/data-types
  * 
- * Task 4. Arrays.
+ * Task 1. Occurrence of a number to a range.
  * 
  * Student: Oleg Baranchikov (boeinfo@ya.ru)
  * Date: 20.02.2022
  * 
  * Materials:
- * https://www.php.net/manual/ru/language.types.array.php
+ * https://www.php.net/manual/ru/language.control-structures.php
  * 
  * -----------------------------------------------------
  */
 
-$arr1 = array('Санкт-Питербург','Глазго','Оттава','Албукерке','Ереван');
-$arr2 = ['Нарофоминск','Коломна','Абакан','Нерюнгри','Иркутск'];
+const MIN = 10;
+const MAX = 50;
 
-echo "<pre>";
-print_r($arr1);
-print_r($arr2);
-echo "</pre><br>";
+$x = 10;
 
-$arr1['element'] = 'Нью-Йорк';
 
-unset($arr2[0]);
+if ($x > MIN AND $x < MAX) {
+    echo "+";
+} elseif ($x == MIN OR $x == MAX) {
+    echo "+-";
+} else {
+    echo "-";
+}
 
-echo "<pre>";
-print_r($arr1);
-print_r($arr2);
-echo "</pre><br>";
-
-echo $arr1[1].", ".$arr2[1]."<br>";
-echo "<br>";
-
-print(implode(", ", $arr1));
-echo "<br>";
-print(implode(", ", $arr2));
-echo "<br>";
-echo "<br>";
-
-echo count($arr1);
-echo "<br>";
-echo count($arr2);
