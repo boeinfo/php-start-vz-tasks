@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Task 01. Lesson 8.</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            form {width: 25%;}
+            label, input {
+                        display: inline-block;
+                        margin-top: 10px;
+                        padding-top: 3px;
+                        padding-bottom: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Регистрация</h1>
+        <form action="les-08-task01_.php" method="post">
+            <fieldset>
+                <legend>Контактная информация</legend>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="user_name"><br>
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="user_surname"><br>
+                <label for="mail">e-mail</label>
+                <input type="email" id="mail" name="user_mail"><br>
+                <label for="tel">tel</label>
+                <input type="tel" id="tel" name="user_tel"><br>
+                <label for="loc">Location</label>
+                <input type="text" id="loc" name="user_location"><br>                
+            </fieldset>
+            <fieldset>
+                <legend>Персональная информация</legend>
+                <label for="gender">Sex</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>                    
+                </select>
+                <br>
+                <label for="os1">Primery OS</label>
+                <input type="checkbox" name="opt1" id="os1" value="win" checked>Windows<br>
+                <input type="checkbox" name="opt2" id="os2" value="lin">Linux<br>
+            </fieldset>
+            <input type="submit">
+        </form>   
+    </body>
+</html>

@@ -12,6 +12,12 @@
  * @date: 23.02.2022
  * 
  * @link: 
- * 
+ * @link: https://www.php.net/manual/ru/faq.html.php
  * -----------------------------------------------------
  */
+
+echo "<div>Hi</div>";
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+
