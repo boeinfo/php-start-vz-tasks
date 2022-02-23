@@ -20,11 +20,11 @@
 $digits = [2, -10, -2, 4, 5, 1, 6, 200, 1.6, 95];
 var_dump($digits);
  
-degNeg($digits);
+deleteNegtives($digits);
 var_dump($digits);
 
 // function block
-function degNeg(&$dig = null) {
+function deleteNegtives(&$dig = null) {
     if(is_array($dig)) {
         foreach($dig as $key => $val) {
             if($val <= 0) {
