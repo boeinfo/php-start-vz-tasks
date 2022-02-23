@@ -6,37 +6,38 @@
  * @lesson 6. Functions. 
  * @link: https://php-start.com/lesson/php-start-theory/user-functions
  * 
- * @task 2. The quadratic equation.
+ * @task 3. Removing negative elements from the array (option 1).
  * 
  * @author: Oleg Baranchikov (boeinfo@ya.ru)
- * @date: 22.02.2022
+ * @date: 23.02.2022
  * 
  * @link: https://www.php.net/manual/ru/language.functions.php
  * 
  * -----------------------------------------------------
  */
 
+$digits = [2, 10, -2, 4, 5, -1, 6, 200, 1.6, 95];
+var_dump($digits, true);
 
-// print_r(QuardEquation(1, 15, 56));  // -7, -8
-// print_r(QuardEquation(4, -4, 1));  // 0.5
-echo QuardEquation(5, 3, 7) ? "Ищи корни" : "Нет корней";  // Нет корней
+/*
+$d = [3, 2.9, -3.1, 3, -5, 8, 2];
+var_dump($d);
+var_dump(degNeg($d));
+*/
 
+$d = degNeg($digits);
+var_dump($d);
 
-function QuardEquation($a, $b, $c) {
-    
-    $x1; $x2; $d;
-    
-    $d = pow($b, 2) - 4*$a*$c;
-    
-    if ($d < 0) {
+// function block
+function degNeg($dig = null) {
+    if(is_array($dig)) {
+        foreach($dig as $key => $val) {
+            if($val <= 0) {
+                unset($dig[$key]);
+            }
+        }
+        return $dig;
+    } else {
         return false;
-    } elseif ($d == 0) {
-        $x1 = -$b / (2 * $a);
-        return $x1;
-    } elseif ($d > 0) {
-        $x1 = round( (-$b + sqrt($d)) / (2 * $a) , 2);
-        $x2 = round( (-$b - sqrt($d)) / (2 * $a) , 2);
-        return [$x1, $x2];
-    }
-        
+    }    
 }
