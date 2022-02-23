@@ -1,3 +1,4 @@
+<?php
 /* -----------------------------------------------------
  * 
  * @course: PHP Start | Theory (by Victor Zinchenko)
@@ -16,12 +17,11 @@
  * -----------------------------------------------------
  */
 
-$digits = [2, 10, -2, 4, 5, -1, 6, 200, 1.6, 95];
-var_dump($digits, true);
-
-$d = $digits;
-degNeg(&$d);
-var_dump($d);
+$digits = [2, -10, -2, 4, 5, 1, 6, 200, 1.6, 95];
+var_dump($digits);
+ 
+degNeg($digits);
+var_dump($digits);
 
 // function block
 function degNeg(&$dig = null) {
@@ -31,7 +31,6 @@ function degNeg(&$dig = null) {
                 unset($dig[$key]);
             }
         }
-        var_dump($dig);
     } else {
         echo 'Ошибка: Передан не массив.';
     }    
