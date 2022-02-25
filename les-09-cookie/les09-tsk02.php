@@ -23,7 +23,7 @@ if(isset($_COOKIE[CN_LAST_VIS])){
 }
 else {
     $info = " ... Oh, it's your first time!";
-    setcookie(CN_LAST_VIS, date("Y-m-d H:i:s"));
+    setcookie(CN_LAST_VIS, date("d.m.Y H:i:s"));
 }
 
 
