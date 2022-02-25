@@ -16,9 +16,16 @@
  * -----------------------------------------------------
  */
 
-const COOKIE_TIME = 60*60*10;
+const CN_LAST_VIS = "LAST_VIS";
 
-$info = " ... Oh, it's your first time!";
+if(isset($_COOKIE[CN_LAST_VIS])){
+    $info = $_COOKIE[CN_LAST_VIS];
+}
+else {
+    $info = " ... Oh, it's your first time!";
+    setcookie(CN_LAST_VIS, date("Y-m-d H:i:s"));
+}
+
 
 ?>
 
