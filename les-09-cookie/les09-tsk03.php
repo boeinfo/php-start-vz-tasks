@@ -16,16 +16,18 @@
  * -----------------------------------------------------
  */
 
-const CN_LAST_VIS = "LAST_VIS";
+const CN_COUNTER = "count_vis";
 
-if(isset($_COOKIE[CN_LAST_VIS])){
-    $info = $_COOKIE[CN_LAST_VIS];
+if(isset($_COOKIE[CN_COUNTER])){
+    $cnt = intval($_COOKIE[CN_COUNTER]);
+    $cnt++;
+    setcookie(CN_COUNTER, $cnt);
+    $info = strval($cnt);
 }
 else {
-    $info = " ... Oh, it's your first time!";
-    setcookie(CN_LAST_VIS, date("d.m.Y H:i:s"));
+    setcookie(CN_COUNTER, 1);
+    $info = "1";
 }
-
 
 ?>
 
@@ -36,10 +38,10 @@ else {
         <meta charset="utf-8">
     </head>
     <body>
-        <header><h2>Hello!</h2></header>
-        <main><p>Date and time of the last visit: <?php 
+        <header><h2>Hi!</h2></header>
+        <main><p>Have you visited this site: <?php 
             echo "{$info}";
-        ?></p><br></main>
-        <footer><h3>Good bay!</h3></footer>
+        ?> time.</p><br></main>
+        <footer><h3>bay...</h3></footer>
     </body>
 </html>
