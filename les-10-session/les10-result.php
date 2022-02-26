@@ -16,18 +16,22 @@
  * -----------------------------------------------------
  */
 
+if(isset($_GET["quest4"])) {
+    $answ4 = $_GET["quest4"];
+} 
+else {
+    $answ4 = null;
+}
+
 session_start();    
-if(isset($_SESSION["USER_ANSWERS"])){
-    $user_answers = $_SESSION["USER_ANSWERS"];
-} else {
-    $user_answers = [];    
-}
+$_SESSION["answ4"] = $answ4;
+$answ1 = $_SESSION["answ1"];
+$answ2 = $_SESSION["answ2"];
+$answ3 = $_SESSION["answ3"];
+$_SESSION = array();
+session_destroy();
 
-if(isset($_GET["next"]) OR isset($_GET["prev"])) {
-    $user_answers["ans1"] = $_GET["quest1"];
-}
-
-echo $user_answers["ans1"];
+$user_answers = $answ1 + $answ2 + $answ3 + $answ4;
 ?>
 <!doctype html>
 <html>
@@ -36,17 +40,21 @@ echo $user_answers["ans1"];
     </head>
     <body>
         <header>
-            <h2>Тест на соответсвие симптомов инфекции COVID-19</h2> 
+            <h2>Тест на соответствие симптомов инфекции COVID-19</h2> 
         </header>
         <form>
-            <label for="quest2">У Вас температура до 37,6 С или выше?</label>
-            <fieldset>
-                <input type="radio" name="quest1" value="0"  
-                       id="quest1" checked>До 37,6 С<br>
-                <input type="radio" name="quest1" value="1">Выше 37,6 С<br>
-            </fieldset>
-            <br>
-            <input formaction="les10-page3.php" formmethod="get" 
+            <p>Результат Вашего опроса:</p>
+            <p>
+                <?php 
+                    if($user_answers >= 3) {
+                        echo "у Вас есть симптомы заболевания COVID.";
+                    }
+                    else {
+                        echo "вероятнее всего у Вас обычное ОРВИ.";
+                    }
+                ?>
+            </p>
+            <input formaction="les10-page4.php" formmethod="get" 
                    type="submit" value="prev" />
             <input formaction="les10-result.php" formmethod="get" 
                    type="submit" value="next" disabled />

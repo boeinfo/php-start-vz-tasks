@@ -16,10 +16,6 @@
  * -----------------------------------------------------
  */
 
-
-$user_answers = ["answ1" => 1, "answ2" => 0, "answ3" => 0];
-session_start();    
-$_SESSION["USER_ANSWERS"] = $user_answers;
 ?>
 <!doctype html>
 <html>
@@ -28,7 +24,7 @@ $_SESSION["USER_ANSWERS"] = $user_answers;
     </head>
     <body>
         <header>
-            <h2>Тест на соответсвие симптомов инфекции COVID-19</h2> 
+            <h2>Тест на соответствие симптомов инфекции COVID-19</h2> 
         </header>
         <form>
             <label for="quest1">Есть ли у Вас ощущение постоянной 

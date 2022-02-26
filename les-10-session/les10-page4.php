@@ -16,18 +16,15 @@
  * -----------------------------------------------------
  */
 
+if(isset($_GET["quest3"])) {
+    $answ3 = $_GET["quest3"];
+} 
+else {
+    $answ3 = null;
+}
+
 session_start();    
-if(isset($_SESSION["USER_ANSWERS"])){
-    $user_answers = $_SESSION["USER_ANSWERS"];
-} else {
-    $user_answers = [];    
-}
-
-if(isset($_GET["next"]) OR isset($_GET["prev"])) {
-    $user_answers["ans1"] = $_GET["quest1"];
-}
-
-echo $user_answers["ans1"];
+$_SESSION["answ3"] = $answ3;
 ?>
 <!doctype html>
 <html>
@@ -36,14 +33,14 @@ echo $user_answers["ans1"];
     </head>
     <body>
         <header>
-            <h2>Тест на соответсвие симптомов инфекции COVID-19</h2> 
+            <h2>Тест на соответствие симптомов инфекции COVID-19</h2> 
         </header>
         <form>
-            <label for="quest2">У Вас температура до 37,6 С или выше?</label>
+            <label for="quest4">У Вас есть головокружение?</label>
             <fieldset>
-                <input type="radio" name="quest1" value="0"  
-                       id="quest1" checked>До 37,6 С<br>
-                <input type="radio" name="quest1" value="1">Выше 37,6 С<br>
+                <input type="radio" name="quest4" value="1"  
+                       id="quest4" checked>Да, и заметное<br>
+                <input type="radio" name="quest4" value="0">Нет, не ощущаю<br>
             </fieldset>
             <br>
             <input formaction="les10-page3.php" formmethod="get" 
