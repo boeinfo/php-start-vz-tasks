@@ -22,44 +22,23 @@ if(mysqli_connect_errno()) {
     echo "Ошибка подключения к БД: ".mysqli_connect_error();
 } 
 else {
-    /*
-    $sql = "SELECT * FROM news;";
+    
+    $sql = "UPDATE user SET surname = \"Smith\" ". 
+           "WHERE id IN ".
+           "(SELECT * FROM (".
+            "SELECT id AS num FROM user ORDER BY id DESC LIMIT 3) ".
+           "AS id);";
+    
     $result = mysqli_query($con, $sql);
 
-    if(isset($result)) {
+    if($result) {
         echo "<pre>";
         var_dump($result);
         echo "</pre>";
-        echo "<hr>";
-        
-        $count = mysqli_num_rows($result);
-        
-        if($count) {
-            while($row = mysqli_fetch_array($result)) {
-                echo "<h4>".$row['h1']."</h4>";
-                echo ">> ".$row['category_id'].", ".$row['author_id'].
-                        ", ".$row['date']."<br>";
-                echo $row['short_content']."<br>";                
-            }
-        }
-        
-        echo "<hr>";
+        echo "<hr>";  
     }
-    */
+    else {
+        echo "Не получается обновить данные".mysqli_error($con);
+    }    
 }
 ?>
-<!--
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <?php
-        /*
-         * 
-         */
-        ?>
-    </body>
-</html>
--->
