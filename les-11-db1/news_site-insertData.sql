@@ -24,12 +24,14 @@ INSERT INTO `news_category` (`name`, `description`, `sort_order`) VALUES
 ('ЛАЙФХАКИ', 'Проще чем кажется', '4'),
 ('ВОЙТИ В IT', 'Стать айтишником и не пожелеть', '3');
 
+ALTER TABLE `user` CHANGE `last_visit` `last_visit` DATETIME NULL;
+
 INSERT INTO `user` (`name`, `surname`, `email`, `password`, `country`, `city`, 
                     `gender`, `birthdate`, `register_date`) 
 VALUES ('Oleg', 'Baranchikov', 'boeinfo@ya.ru', 'loop', 'Belarus', 'Beloozersk', 
 '1', '1975-01-22 14:25:00.000000', CURRENT_TIMESTAMP),
        ('Lora', 'Snitko', 'lora.snitko@mail.ru', 'sun', 'Belarus', 'Brest', 
-'1', '1972-02-11 06:35:00.000000', CURRENT_TIMESTAMP),
+'0', '1972-02-11 06:35:00.000000', CURRENT_TIMESTAMP),
        ('Serg', 'Fedotov', 'fedotov@tut.by', 'eks', 'Belarus', 'Brest', 
 '1', '1974-04-20 18:55:00.000000', CURRENT_TIMESTAMP);
 
