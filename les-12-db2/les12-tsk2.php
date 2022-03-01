@@ -22,44 +22,18 @@ if(mysqli_connect_errno()) {
     echo "Ошибка подключения к БД: ".mysqli_connect_error();
 } 
 else {
-    /*
-    $sql = "SELECT * FROM news;";
+    
+    $sql = "DELETE FROM `user` WHERE name = 'Tomas' OR name = 'John';";
     $result = mysqli_query($con, $sql);
 
-    if(isset($result)) {
+    if($result) {
         echo "<pre>";
         var_dump($result);
         echo "</pre>";
-        echo "<hr>";
-        
-        $count = mysqli_num_rows($result);
-        
-        if($count) {
-            while($row = mysqli_fetch_array($result)) {
-                echo "<h4>".$row['h1']."</h4>";
-                echo ">> ".$row['category_id'].", ".$row['author_id'].
-                        ", ".$row['date']."<br>";
-                echo $row['short_content']."<br>";                
-            }
-        }
-        
-        echo "<hr>";
+        echo "<hr>";  
     }
-    */
+    else {
+        echo "Не получается удалить данные".mysqli_error($con);
+    }
 }
 ?>
-<!--
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <?php
-        /*
-         * 
-         */
-        ?>
-    </body>
-</html>
--->
