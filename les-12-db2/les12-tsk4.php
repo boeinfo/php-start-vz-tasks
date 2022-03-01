@@ -22,44 +22,23 @@ if(mysqli_connect_errno()) {
     echo "Ошибка подключения к БД: ".mysqli_connect_error();
 } 
 else {
-    /*
-    $sql = "SELECT * FROM news;";
+
+    $sql = "SELECT status AS STATUS, count(*) AS COUNT ".
+    "FROM news GROUP by status;";
     $result = mysqli_query($con, $sql);
 
     if(isset($result)) {
-        echo "<pre>";
-        var_dump($result);
-        echo "</pre>";
-        echo "<hr>";
-        
+ 
         $count = mysqli_num_rows($result);
         
         if($count) {
+            echo "STATUS - COUNT <br>";
             while($row = mysqli_fetch_array($result)) {
-                echo "<h4>".$row['h1']."</h4>";
-                echo ">> ".$row['category_id'].", ".$row['author_id'].
-                        ", ".$row['date']."<br>";
-                echo $row['short_content']."<br>";                
+                echo $row['STATUS']." - ".$row['COUNT']."<br>";  
             }
         }
-        
         echo "<hr>";
     }
-    */
+
 }
 ?>
-<!--
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <?php
-        /*
-         * 
-         */
-        ?>
-    </body>
-</html>
--->
