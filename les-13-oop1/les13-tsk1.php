@@ -9,44 +9,67 @@
  * @task 1. Introduction to OOP.
  * 
  * @author: Oleg Baranchikov (boeinfo@ya.ru)
- * @date: 02.03.2022
+ * @date: 03.03.2022
 
  * -----------------------------------------------------
  */
 
-
 Class Car {
-    public $color = "white";
-    public $speed;
-    public $fuel;
+    const AXIS = 2;
+    const WINDOWS = 5;
+    const VALVE = 12;
+    
     public $brand;
-    public $doors_quant;
+    public $mark;
+    public $fuel;
+    public $speedAverage;
+    public $color;
+    public $doorsQuant;
+    public $discount = 0.1;
     public $price;
-    public $discount;
+    
+    public function __construct($brand="", $mark="", $fuel = 10, 
+            $speedAverage = 120, $color = "white", $doorsQuant = 4)
+    {
+        $this->brand = $brand; $this->mark = $mark; $this->fuel = $fuel;
+        $this->speedAverage = $speedAverage; $this->color = $color; 
+        $this->doorsQuant = $doorsQuant;
+    }
+    
+    public function fuelConsuption($distance) 
+    {
+        $fl = round(($distance * $this->fuel) / 100, 2);
+        $info = "<p>Auto {$this->brand} {$this->mark} will spend ".
+                "<b>{$fl} liters </b>".
+                "on driving {$distance} km.</p>";
+        return $info;
+    }
+    
+    public static function getMaxConstant()
+    {
+        return max(self::AXIS, self::WINDOWS, self::AXIS);
+    }
+    
 }
 
-$car1 = new Car;
-$car->brand = "Audi";
-$car->speed = 110;
-$car->fuel = 12;
+$car1 = new Car();
+$car1->brand = "Mers";
+$car1->mark = "E221";
+$car1->fuel = 15;
+echo $car1->fuelConsuption(1000);
 
-$car2 = new Car;
-$car->brand = "Mers";
-$car->speed = 150;
-$car->fuel = 14;
-$car->color = "black";
+$car2 = new Car();
+$car2->brand = "Volvo";
+$car2->mark = "S90";
+$car2->fuel = 13;
+echo $car2->fuelConsuption(1000);
 
-$car3 = new Car;
+$car3 = new Car("Audi", "A6");
+echo $car3->fuelConsuption(1000);
 
+$car4 = new Car("Toyota", "Prado", 12, 140, "grey");
+echo $car4->fuelConsuption(1000);
+
+echo "<br> Max value is: ".Car::getMaxConstant()."<br>";
 
 ?>
-<!--
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-
-    </body>
-</html>
--->
