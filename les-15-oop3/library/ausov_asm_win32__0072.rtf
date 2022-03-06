@@ -1,0 +1,756 @@
+{\rtf1\ansi\ansicpg\deff0\deflang1049\deflangfe1049\deftab708{\fonttbl{\f0\fswiss\fprq2\fcharset204{\*\fname Arial CYR;}Arial;}{\f1\froman\fprq2\fcharset204{\*\fname Times New Roman CYR;}Times New Roman;}{\f2\fmodern\fprq1\fcharset204{\*\fname Courier New CYR;}Courier New;}}{\info
+{\title Assembler & Win32}
+{\author Александр Усов }
+}{\fet0 \ftnbj \ftnrstpg \ftnnar}{\stylesheet
+{\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0  Normal;}
+{\s1 \qc\snext0\b\f0\fs32\fi0\li0\ri0  heading 1;}
+{\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0  heading 2;}
+{\s3 \qc\snext0\i0\fs26\f0\b\fi0\li0\ri0  heading 3;}
+{\s4 \qc\snext0\lang1049\f1\fs26\b\fi0\li0\ri0  heading 4;}
+{\s5 \qc\snext0\i\fs24\f1\b\fi0\li0\ri0  heading 5;}
+{\s6 \qc\snext0\s6\f1\b\fs24\fi0  heading 6;}
+{\s10 \qj\snext\f1\fs22\b0\i1\li3000\fi400\ri0  Epigraph;}
+{\s11 \qj\snext0\f1\fs22\b1\i0\li3000\fi400\ri0  Epigraph Author;}
+{\s12 \qj\snext0\f1\fs24\b0\i1\fi567\li0\ri0  Annotation;}
+{\s13 \qj\snext0\f1\fs22\b0\i0\li1134\ri600  Cite;}
+{\s14 \qj\snext0\f1\fs22\b1\i1\li1701\ri600  Cite Author;}
+{\s15 \ql\snext0\f1\fs24\b1\i0\li2000\ri600\sb12  Poem Title;}
+{\s16 \ql\snext0\f1\fs24\b0\i0\li2000\ri600  Stanza;}
+{\s17 \qj\snext0\f1\fs20\b0\i0\fi200\li0\ri0  FootNote;}
+{\s18 \qj\snext\f1\fs18\b0\i1\li1500\fi400\ri0  FootNote Epigraph;}
+{\s18 \qj\snext0\f1\fs18\b1\i0\li1500\fi400\ri0  FootNote Epigraph Author;}
+{\s19 \ql\snext0\f1\fs18\b0\i0\li500\ri600  FootNote Stanza;}
+{\s20 \qj\snext0\f1\fs18\b0\i0\li300\ri600  FootNote Cite;}
+{\s21 \qj\snext0\f1\fs18\b1\i1\li350\ri600  FootNote Cite Author;}
+{\s22 \ql\snext0\f1\fs20\b1\i0\li2000\ri600\sb12  FootNote Poem Title;}
+
+}\paperw11906\paperh16838\margl1417\margr850\margt1134\margb1134
+
+
+\s0 \f0\qc\fi0\li0\ri0 Спасибо, что скачали книгу в 
+{\field{\*\fldinst{HYPERLINK "https://royallib.com" }}{\fldrslt \ul бесплатной электронной библиотеке Royallib.com}}
+\par
+
+\s0 \f0\qc\fi0\li0\ri0 
+{\field{\*\fldinst{HYPERLINK "https://royallib.com/author/usov_aleksandr.html" }}{\fldrslt \ul Все книги автора}}
+\par
+
+\s0 \f0\qc\fi0\li0\ri0 
+{\field{\*\fldinst{HYPERLINK "https://royallib.com/book/usov_aleksandr/assembler__win32.html" }}{\fldrslt \ul Эта же книга в других форматах}}
+\par
+\par
+
+\s0 \f0\qc\fi0\li0\ri0 Приятного чтения!\par
+\par
+\par
+\par
+\s1 \qc\snext0\b\f0\fs32\fi0\li0\ri0 \b Александр Усов\b0  \par
+\b ASSEMBLER & WIN32\b0  \par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Программирование на ассемблере под Win32 воспринимается весьма не однозначно. Считается, что написание приложений слишком сложно для применения ассемблера. Собственно обсуждению того насколько оправдана такая точка зрения и посвящена данная статья. Она не ставит своей целью обучение программированию под Win32 или обучение ассемблеру, я подразумеваю, что читатели имеют определённые знания в этих областях.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 В отличие от программирования под DOS, где программы написанные на языках высокого уровня (ЯВУ) были мало похожи на свои аналоги, написанные на ассемблере, приложения под Win32 имеют гораздо больше общего. В первую очередь, это связано с тем, что обращение к сервису операционной системы в Windows осуществляется посредством вызова функций, а не прерываний, что было характерно для DOS. Здесь нет передачи параметров в регистрах при обращении к сервисным функциям и, соответственно, нет и множества результирующих значений возвращаемых в регистрах общего назначения и регистре флагов. Следовательно проще запомнить и использовать протоколы вызова функций системного сервиса. С другой стороны, в Win32 нельзя непосредственно работать с аппаратным уровнем, чем “грешили” программы для DOS. Вообще написание программ под Win32 стало значительно проще и это обусловлено следующими факторами:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — отсутствие startup кода, характерного для приложений и динамических библиотек написанных под Windows 3.x;\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — гибкая система адресации к памяти: возможность обращаться к памяти через любой регистр общего назначения; “отсутствие” сегментных регистров;\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — доступность больших объёмов виртуальной памяти;\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — развитый сервис операционной системы, обилие функций, облегчающих разработку приложений;\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — многообразие и доступность средств создания интерфейса с пользователем (диалоги, меню и т. п.).\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Современный ассемблер, к которому относится и TASM 5.0 фирмы Borland International Inc., в свою очередь, развивал средства, которые ранее были характерны только для ЯВУ. К таким средствам можно отнести макроопределение вызова процедур, возможность введения шаблонов процедур (описание прототипов) и даже объектно-ориентированные расширения. Однако, ассемблер сохранил и такой прекрасный инструмент, как макроопределения вводимые пользователем, полноценного аналога которому нет ни в одном ЯВУ.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Все эти факторы позволяют рассматривать ассемблер, как самостоятельный инструмент для написания приложений под платформы Win32 (Windows NT и Windows 95). Как иллюстрацию данного положения, рассмотрим простой пример приложения, работающего с диалоговым окном.\par
+\par
+\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0 Пример 1. Программа работы с диалогом\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл, содержащий текст приложения, dlg.asm\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IDEAL\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 P586\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 RADIX  16\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 MODEL  FLAT\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 %NOINCL\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 %NOLIST\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 include      "winconst.inc"             ; API Win32 consts\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 include      "winptype.inc"             ; API Win32 functions prototype\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 include      "winprocs.inc"             ; API Win32 function\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 include      "resource.inc"             ; resource consts\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 MAX_USER_NAME =      20\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DataSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 szAppName    db     'Demo 1', 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 szHello             db     'Hello, '\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 szUser       db     MAX_USER_NAME dup (0)\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 CodeSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Start:       call   GetModuleHandleA,   0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              call   DialogBoxParamA,    eax, IDD_DIALOG, 0, offset DlgProc, 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              cmp    eax,IDOK\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jne    bye\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              call   MessageBoxA,        0, offset szHello,  \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                         offset szAppName,   \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                         MB_OK or MB_ICONINFORMATION\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 bye:         call   ExitProcess,        0\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 public stdcall      DlgProc\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 proc   DlgProc      stdcall\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 arg    @@hDlg :dword,      @@iMsg :dword,      @@wPar :dword,      @@lPar :dword\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    eax,[@@iMsg]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              cmp    eax,WM_INITDIALOG\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              je     @@init\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              cmp    eax,WM_COMMAND\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jne    @@ret_false\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    eax,[@@wPar]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              cmp    eax,IDCANCEL\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              je     @@cancel\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              cmp    eax,IDOK\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jne    @@ret_false\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              call   GetDlgItemTextA,    @@hDlg, IDR_NAME,   \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                         offset szUser, MAX_USER_NAME\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    eax,IDOK\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@cancel:    call   EndDialog,          @@hDlg, eax\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@ret_false: xor    eax,eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              ret\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@init:             call   GetDlgItem,         @@hDlg, IDR_NAME\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              call   SetFocus,           eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jmp    @@ret_false\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 endp   DlgProc\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 end    Start\par
+\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл ресурсов dlg.rc\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #include "resource.h"\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IDD_DIALOG DIALOGEX 0, 0, 187, 95\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 EXSTYLE WS_EX_CLIENTEDGE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 CAPTION "Dialog"\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 FONT 8, "MS Sans Serif"\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 BEGIN\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0     DEFPUSHBUTTON   "OK",IDOK,134,76,50,14\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0     PUSHBUTTON      "Cancel",IDCANCEL,73,76,50,14\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0     LTEXT           "Type your name",IDC_STATIC,4,36,52,8\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0     EDITTEXT        IDR_NAME,72,32,112,14,ES_AUTOHSCROLL\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 END\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Остальные файлы из данного примера, приведены в приложении 1.\par
+\par
+\s3 \qc\snext0\i0\fs26\f0\b\fi0\li0\ri0 Краткие комментарии к программе\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Сразу после метки Start, программа обращается к функции API Win32 GetModuleHandle для получения handle данного модуля (данный параметр чаще именуют как handle of instance). Получив handle, мы вызываем диалог, созданный либо вручную, либо с помощью какой-либо программы построителя ресурсов. Далее программа проверяет результат работы диалогового окна. Если пользователь вышел из диалога посредством нажатия клавиши OK, то приложение запускает MessageBox с текстом приветствия.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Диалоговая процедура обрабатывает следующие сообщения. При инициализации диалога  (WM_INITDIALOG) она просит Windows установить фокус на поле ввода имени пользователя. Сообщение WM_COMMAND обрабатывается в таком порядке: делается проверка на код нажатия клавиши. Если была нажата клавиша OK, то пользовательский ввод копируется в переменную szValue, если же была нажата клавиша Cancel, то копирования не производится. Но и в том и другом случае вызывается функция окончания диалога: EndDialog. Остальные сообщения в группе WM_COMMAND просто игнорируются, предоставляя Windows действовать по умолчанию.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Вы можете сравнить приведённую программу с аналогичной программой, написанной на ЯВУ, разница в написании будет незначительна. Очевидно те, кто писал приложения на ассемблере под Windows 3.x, отметят тот факт, что исчезла необходимость в сложном и громоздком startup коде. Теперь приложение выглядит более просто и естественно.\par
+\par
+\par
+\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0 Пример 2. Динамическая библиотека\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Написание динамических библиотек под Win32 также значительно упростилось, по сравнению с тем, как это делалось под Windows 3.x. Исчезла необходимость вставлять startup код, а использование четырёх событий инициализации/деинициализации на уровне процессов и потоков, кажется логичным.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Рассмотрим простой пример динамической библиотеки, в которой всего одна функция, преобразования целого числа в строку в шестнадцатеричной системе счисления.\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл mylib.asm\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Ideal\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 P586\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Radix  16\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Model  flat\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DLL_PROCESS_ATTACH  = 1\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn  GetVersion:  proc\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DataSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 hInst        dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 OSVer        dw     0\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 CodeSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 proc   libEntry     stdcall\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 arg    @@hInst      :dword,      @@rsn  :dword,      @@rsrv :dword\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              cmp    [@@rsn],DLL_PROCESS_ATTACH\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jne    @@1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              call   GetVersion\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    [OSVer],ax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    eax,[@@hInst]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    [hInst],eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@1:         mov    eax,1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 endP   libEntry\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 public stdcall      Hex2Str\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 proc   Hex2Str      stdcall\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 arg    @@num  :dword,      @@str  :dword\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 uses   ebx\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    eax,[@@num]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    ebx,[@@str]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    ecx,7\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@1:         mov    edx,eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              shr    eax,4\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              and    edx,0F\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              cmp    edx,0A\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jae    @@2\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              add    edx,'0'\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jmp    @@3\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@2:         add    edx,'A' - 0A\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@3:         mov    [byte ebx + ecx],dl\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              dec    ecx\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jns    @@1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    [byte ebx + 8],0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 endp   Hex2Str\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 end    libEntry\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Остальные файлы, которые необходимы для данного примера, можно найти в приложении 2.\par
+\par
+\s3 \qc\snext0\i0\fs26\f0\b\fi0\li0\ri0 Краткие комментарии к динамической библиотеке\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Процедура libEntry является точкой входа в динамическую библиотеку, её не надо объявлять как экспортируемую, загрузчик сам определяет её местонахождение. LibEntry может вызываться в четырёх случаях:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — при проецировании библиотеки в адресное пространство процесса (DLL_PROCESS_ATTACH);\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — при первом вызове библиотеки из потока (DLL_THREAD_ATTACH), например, с помощью функции LoadLibrary;\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — при выгрузке библиотеки потоком (DLL_THREAD_DETACH);\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — при выгрузке библиотеки из адресного пространства процесса (DLL_PROCESS_DETACH).\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 В нашем примере обрабатывается только первое из событий DLL_PROCESS_ATTACH. При обработке данного события библиотека запрашивает версию OS сохраняет её, а также свой handle of instance.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Библиотека содержит только одну экспортируемую функцию, которая собственно не требует пояснений. Вы, пожалуй, можете обратить внимание на то, как производится запись преобразованных значений. Интересна система адресации посредством двух регистров общего назначения: ebx + ecx, она позволяет нам использовать регистр ecx одновременно и как счётчик и как составную часть адреса.\par
+\par
+\par
+\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0 Пример 3. Оконное приложение\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл dmenu.asm\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Ideal\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 P586\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Radix  16\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Model  flat\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 struc  WndClassEx\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        cbSize       dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        style        dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        lpfnWndProc  dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        cbClsExtra   dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        cbWndExtra   dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        hInstance    dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        hIcon        dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        hCursor             dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        hbrBackground dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        lpszMenuName dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        lpszClassName dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        hIconSm             dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ends   WndClassEx\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 struc  Point\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        left         dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        top          dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        right        dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        bottom       dd     0            \par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ends   Point\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 struc  msgStruc\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        hwnd         dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        message             dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        wParam       dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        lParam       dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        time         dd     0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        pt           Point  <>\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ends   msgStruc\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 MyMenu              = 0065\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ID_OPEN                    = 9C41\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ID_SAVE                    = 9C42\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ID_EXIT                    = 9C43\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 CS_VREDRAW          = 0001\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 CS_HREDRAW          = 0002\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IDI_APPLICATION            = 7F00\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IDC_ARROW           = 7F00\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 COLOR_WINDOW        = 5\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_EX_WINDOWEDGE    = 00000100\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_EX_CLIENTEDGE    = 00000200\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_EX_OVERLAPPEDWINDOW     = WS_EX_WINDOWEDGE OR WS_EX_CLIENTEDGE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_OVERLAPPED       = 00000000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_CAPTION          = 00C00000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_SYSMENU          = 00080000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_THICKFRAME       = 00040000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_MINIMIZEBOX             = 00020000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_MAXIMIZEBOX             = 00010000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WS_OVERLAPPEDWINDOW =      WS_OVERLAPPED     OR \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                            WS_CAPTION        OR \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                            WS_SYSMENU        OR \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                            WS_THICKFRAME     OR \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                            WS_MINIMIZEBOX    OR \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                            WS_MAXIMIZEBOX \par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 CW_USEDEFAULT       = 80000000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 SW_SHOW                    = 5\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WM_COMMAND          = 0111\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WM_DESTROY          = 0002\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WM_CLOSE            = 0010\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 MB_OK               = 0\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptGetModuleHandle   stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpModuleName :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptLoadIcon          stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hInstance    :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpIconName   :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptLoadCursor        stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hInstance    :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpCursorName :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptLoadMenu          stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hInstance    :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpMenuName   :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptRegisterClassEx   stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpwcx        :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptCreateWindowEx    stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     dwExStyle    :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpClassName  :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpWindowName :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     dwStyle             :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     x            :dword, \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     y            :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     nWidth       :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     nHeight             :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hWndParent   :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hMenu        :dword, \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hInstance    :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpParam             :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptShowWindow        stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hWnd         :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     nCmdShow     :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptUpdateWindow             stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hWnd         :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptGetMessage        stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     pMsg         :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hWnd         :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     wMsgFilterMin :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     wMsgFilterMax :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptTranslateMessage  stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpMsg        :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptDispatchMessage   stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     pmsg         :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptSetMenu           stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hWnd         :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hMenu        :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptPostQuitMessage   stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     nExitCode    :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptDefWindowProc            stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hWnd         :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     Msg          :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     wParam       :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lParam       :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptSendMessage       stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hWnd         :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     Msg          :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     wParam       :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lParam       :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptMessageBox        stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     hWnd         :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpText       :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     lpCaption    :dword,      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     uType        :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 PROCTYPE     ptExitProcess       stdcall      \\\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                     exitCode     :dword\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        GetModuleHandleA    :ptGetModuleHandle\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        LoadIconA           :ptLoadIcon\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        LoadCursorA         :ptLoadCursor\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        RegisterClassExA    :ptRegisterClassEx\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        LoadMenuA           :ptLoadMenu\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        CreateWindowExA            :ptCreateWindowEx\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        ShowWindow          :ptShowWindow\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        UpdateWindow        :ptUpdateWindow\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        GetMessageA         :ptGetMessage\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        TranslateMessage    :ptTranslateMessage\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        DispatchMessageA    :ptDispatchMessage\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        SetMenu                    :ptSetMenu\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        PostQuitMessage            :ptPostQuitMessage\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn         DefWindowProcA             :ptDefWindowProc\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        SendMessageA        :ptSendMessage\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        MessageBoxA         :ptMessageBox\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 extrn        ExitProcess         :ptExitProcess\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 UDataSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 hInst        dd           ?\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 hWnd         dd           ?\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IFNDEF VER1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 hMenu        dd           ?\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ENDIF\par
+\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DataSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 msg          msgStruc     <>\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 classTitle   db     'Menu demo', 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 wndTitle     db     'Demo program', 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 msg_open_txt db     'You selected open', 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 msg_open_tlt db     'Open box', 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 msg_save_txt db     'You selected save', 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 msg_save_tlt db     'Save box', 0\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 CodeSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Start: call   GetModuleHandleA,   0      ; не обязательно, но желательно\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [hInst],eax\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        sub    esp,SIZE WndClassEx        ; отведём место в стеке под структуру\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).cbSize],SIZE WndClassEx\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).style],CS_HREDRAW or CS_VREDRAW\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).lpfnWndProc],offset WndProc\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).cbWndExtra],0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).cbClsExtra],0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).hInstance],eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   LoadIconA,          0, IDI_APPLICATION\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).hIcon],eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   LoadCursorA,        0, IDC_ARROW\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).hCursor],eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).hbrBackground],COLOR_WINDOW\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IFDEF  VER1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).lpszMenuName],MyMenu\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ELSE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).lpszMenuName],0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ENDIF\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).lpszClassName],offset classTitle\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [(WndClassEx esp).hIconSm],0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   RegisterClassExA,   esp    ; зарегистрируем класс окна\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        add    esp,SIZE WndClassEx        ; восстановим стек\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                          ; и создадим окно\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IFNDEF VER2\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   CreateWindowExA,    WS_EX_OVERLAPPEDWINDOW, \\ extended window style\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   offset classTitle, \\ pointer to registered class name \par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   offset wndTitle,\\ pointer to window name\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   WS_OVERLAPPEDWINDOW,       \\ window style\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   CW_USEDEFAULT,      \\ horizontal position of window\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   CW_USEDEFAULT,      \\ vertical position of window\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   CW_USEDEFAULT,      \\ window width\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   CW_USEDEFAULT,      \\ window height\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   0,           \\ handle to parent or owner window\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   0,     \\ handle to menu, or child-window identifier\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   [hInst],     \\ handle to application instance\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   0            ; pointer to window-creation data\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ELSE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   LoadMenu,           hInst, MyMenu\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [hMenu],eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   CreateWindowExA,    WS_EX_OVERLAPPEDWINDOW,    \\ extended window style\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   offset classTitle, \\ pointer to registered class name \par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   offset wndTitle,    \\ pointer to window name\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   WS_OVERLAPPEDWINDOW,       \\ window style\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   CW_USEDEFAULT,      \\ horizontal position of window\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   CW_USEDEFAULT,      \\ vertical position of window\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   CW_USEDEFAULT,      \\ window width\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   CW_USEDEFAULT,      \\ window height\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   0,           \\ handle to parent or owner window\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   eax,   \\ handle to menu, or child-window identifier\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   [hInst],     \\ handle to application instance\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0                                   0            ; pointer to window-creation data\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ENDIF\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [hWnd],eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   ShowWindow,         eax, SW_SHOW        ; show window\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   UpdateWindow,       [hWnd]              ; redraw window\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IFDEF  VER3\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   LoadMenuA,          [hInst], MyMenu\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    [hMenu],eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   SetMenu,            [hWnd], eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ENDIF\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 msg_loop:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   GetMessageA,        offset msg, 0, 0, 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        or     ax,ax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        jz     exit\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   TranslateMessage,   offset msg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   DispatchMessageA,   offset msg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        jmp    msg_loop\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 exit:  call   ExitProcess,        0\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 public stdcall      WndProc\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 proc   WndProc      stdcall\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 arg    @@hwnd:      dword, @@msg: dword, @@wPar:      dword, @@lPar:      dword\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    eax,[@@msg]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        cmp    eax,WM_COMMAND\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        je     @@command\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        cmp    eax,WM_DESTROY\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        jne    @@default\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   PostQuitMessage,    0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        xor    eax,eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        jmp    @@ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@default:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   DefWindowProcA,     [@@hwnd], [@@msg], [@@wPar], [@@lPar]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@ret: ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@command:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    eax,[@@wPar]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        cmp    eax,ID_OPEN\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        je     @@open\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        cmp    eax,ID_SAVE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        je     @@save\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        call   SendMessageA,       [@@hwnd], WM_CLOSE, 0, 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        xor    eax,eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        jmp    @@ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@open:      mov    eax, offset msg_open_txt\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    edx, offset msg_open_tlt\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        jmp    @@mess\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@save:      mov    eax, offset msg_save_txt\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        mov    edx, offset msg_save_tlt\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@mess:      call   MessageBoxA,        0, eax, edx, MB_OK\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        xor    eax,eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        jmp    @@ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 endp   WndProc\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 end    Start\par
+\par
+\s3 \qc\snext0\i0\fs26\f0\b\fi0\li0\ri0 Комментарии к программе\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Здесь мне хотелось в первую очередь продемонстрировать использование прототипов функций API Win32. Конечно их (а также описание констант и структур из API Win32) следует вынести в отдельные подключаемые файлы, поскольку, скорее всего Вы будете использовать их и в других программах. Описание прототипов функций обеспечивает строгий контроль со стороны компилятора за количеством и типом параметров, передаваемых в функции. Это существенно облегчает жизнь программисту, позволяя избежать ошибок времени исполнения, тем более, что число параметров в некоторых функциях API Win32 весьма значительно.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Существо данной программы заключается в демонстрации вариантов работы с оконным меню. Программу можно откомпилировать в трёх вариантах (версиях), указывая компилятору ключи VER2 или VER3 (по умолчанию используется ключ VER1). В первом варианте программы меню определяется на уровне класса окна и все окна данного класса будут иметь аналогичное меню. Во втором варианте, меню определяется при создании окна, как параметр функции CreateWindowEx. Класс окна не имеет меню и в данном случае, каждое окно этого класса может иметь своё собственное меню. Наконец, в третьем варианте, меню загружается после создания окна. Данный вариант показывает, как можно связать меню с уже созданным окном.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Директивы условной компиляции позволяют включить все варианты в текст одной и той же программы. Подобная техника удобна не только для демонстрации, но и для отладки. Например, когда Вам требуется включить в программу новый фрагмент кода, то Вы можете применить данную технику, дабы не потерять функционирующий модуль. Ну, и конечно, применение директив условной компиляции – наиболее удобное средство тестирования различных решений (алгоритмов) на одном модуле.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Представляет определённый интерес использование стековых фреймов и заполнение структур в стеке посредством регистра указателя стека (esp). Именно это продемонстрировано при заполнении структуры WndClassEx. Выделение места в стеке (фрейма) делается простым перемещением esp:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        sub    esp,SIZE WndClassEx\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Теперь мы можем обращаться к выделенной памяти используя всё тот же регистр указатель стека. При создании 16-битных приложений такой возможностью мы не обладали. Данный приём можно использовать внутри любой процедуры или даже произвольном месте программы. Накладные расходы на подобное выделение памяти минимальны, однако, следует учитывать, что размер стека ограничен и размещать большие объёмы данных в стеке вряд ли целесообразно. Для этих целей лучше использовать “кучи” (heap) или виртуальную память (virtual memory).\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Остальная часть программы достаточно тривиальна и не требует каких-либо пояснений. Возможно более интересным покажется тема использования макроопределений.\par
+\par
+\par
+\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0 Макроопределения\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Мне достаточно редко приходилось серьёзно заниматься разработкой макроопределений при программировании под DOS. В Win32 ситуация принципиально иная. Здесь грамотно написанные макроопределения способны не только облегчить чтение и восприятие программ, но и реально облегчить жизнь программистов. Дело в том, что в Win32 фрагменты кода часто повторяются, имея при этом не принципиальные отличия. Наиболее показательна, в этом смысле, оконная и/или диалоговая процедура. И в том и другом случае мы определяем вид сообщения и передаём управление тому участку кода, который отвечает за обработку полученного сообщения. Если в программе активно используются диалоговые окна, то аналогичные фрагменты кода сильно перегрузят программу, сделав её малопригодной для восприятия. Применение макроопределений в таких ситуациях более чем оправдано. В качестве основы для макроопределения, занимающегося диспетчеризацией поступающих сообщений на обработчиков, может послужить следующее описание.\par
+\par
+\s3 \qc\snext0\i0\fs26\f0\b\fi0\li0\ri0 Пример макроопределений\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 macro  MessageVector message1, message2:REST\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        IFNB   <message1>\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              dd     message1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              dd     offset @@&message1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              @@VecCount = @@VecCount + 1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              MessageVector message2\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        ENDIF\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 endm   MessageVector\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 macro  WndMessages  VecName, message1, message2:REST\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        @@VecCount   = 0\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DataSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 label  @@&VecName   dword\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        MessageVector message1, message2\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        @@&VecName&Cnt      = @@VecCount\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 CodeSeg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    ecx,@@&VecName&Cnt\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              mov    eax,[@@msg]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@&VecName&_1:      dec    ecx\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              js     @@default\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              cmp    eax,[dword ecx * 8 + offset @@&VecName]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jne    @@&VecName&_1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jmp    [dword ecx + offset @@&VecName + 4]\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@default:   call   DefWindowProcA, [@@hWnd], [@@msg], [@@wPar], [@@lPar]\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@ret:       ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@ret_false: xor    eax,eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              jmp    @@ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@ret_true:  mov    eax,-1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0              dec    eax\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0               jmp    @@ret\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 endm   WndMessage\par
+\par
+\s3 \qc\snext0\i0\fs26\f0\b\fi0\li0\ri0 Комментарии к макроопределениям\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 При написании процедуры окна Вы можете использовать макроопределение WndMessages, указав в списке параметров те сообщения, обработку которых намерены осуществить. Тогда процедура окна примет вид:\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 proc   WndProc      stdcall\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 arg    @@hWnd:      dword, @@msg: dword, @@wPar:      dword, @@lPar:      dword\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 WndMessages  WndVector,   WM_CREATE, WM_SIZE, WM_PAINT, WM_CLOSE, WM_DESTROY\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@WM_CREATE:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        ; здесь обрабатываем сообщение WM_CREATE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@WM_SIZE:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        ; здесь обрабатываем сообщение WM_SIZE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@WM_PAINT:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        ; здесь обрабатываем сообщение WM_PAINT\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@WM_CLOSE:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        ; здесь обрабатываем сообщение WM_CLOSE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 @@WM_DESTROY:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 ; здесь обрабатываем сообщение WM_DESTROY\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 endp   WndProc\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Обработку каждого сообщения можно завершить тремя способами:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — вернуть значение TRUE, для этого необходимо использовать переход на метку @@ret_true;\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — вернуть значение FALSE, для этого необходимо использовать переход на метку @@ret_false;\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — перейти на обработку по умолчанию, для этого необходимо сделать переход на метку @@default.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Отметьте, что все перечисленные метки определены в макро WndMessages и Вам не следует определять их заново в теле процедуры.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Теперь давайте разберёмся, что происходит при вызове макроопределения WndMessages. Вначале производится обнуление счётчика параметров самого макроопределения (число этих параметров может быть произвольным). Теперь в сегменте данных создадим метку с тем именем, которое передано в макроопределение в качестве первого параметра. Имя метки формируется путём конкатенации символов @@ и названия вектора. Достигается это за счёт использования оператора &. Например, если передать имя TestLabel, то название метки примет вид: @@TestLabel. Сразу за объявлением метки вызывается другое макроопределение MessageVector, в которое передаются все остальные параметры, которые должны быть ничем иным, как списком сообщений, подлежащих обработке в процедуре окна. Структура макроопределения MessageVector проста и бесхитростна. Она извлекает первый параметр и в ячейку памяти формата dword заносит код сообщения. В следующую ячейку памяти формата dword записывается адрес метки обработчика, имя которой формируется по описанному выше правилу. Счётчик сообщений увеличивается на единицу. Далее следует рекурсивный вызов с передачей ещё не зарегистрированных сообщений, и так продолжается до тех пор, пока список сообщений не будет исчерпан.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Сейчас в макроопределении WndMessage можно начинать обработку. Теперь существо обработки, скорее всего, будет понятно без дополнительных пояснений.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Обработка сообщений в Windows не является линейной, а, как правило, представляет собой иерархию. Например, сообщение WM_COMMAND может заключать в себе множество сообщений поступающих от меню и/или других управляющих элементов. Следовательно, данную методику можно с успехом применить и для других уровней каскада и даже несколько упростить её. Действительно, не в наших силах исправить код сообщений, поступающих в процедуру окна или диалога, но выбор последовательности констант, назначаемых пунктам меню или управляющим элементам (controls) остаётся за нами. В этом случае нет нужды в дополнительном поле, которое сохраняет код сообщения. Тогда каждый элемент вектора будет содержать только адрес обработчика, а найти нужный элемент весьма просто. Из полученной константы, пришедшей в сообщении, вычитается идентификатор первого пункта меню или первого управляющего элемента, это и будет номер нужного элемента вектора. Остаётся только сделать переход на обработчик.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Вообще тема макроопределений весьма поучительна и обширна. Мне редко доводится видеть грамотное использование макросов и это досадно, поскольку с их помощью можно сделать работу в ассемблере значительно проще и приятнее.\par
+\par
+\par
+\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0 Резюме\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 Для того, чтобы писать полноценные приложения под Win32 требуется не так много:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — собственно компилятор и компоновщик (я использую связку TASM32 и TLINK32 из пакета TASM 5.0). Перед использованием рекомендую “наложить” patch, на данный пакет. Patch можно взять на site 
+{\field{\*\fldinst{HYPERLINK "http://www.borland.com/" }}{\fldrslt \ul www.borland.com}}
+ или на нашем ftp сервере ftp.uralmet.ru.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — редактор и компилятор ресурсов (я использую Developer Studio и brcc32.exe);\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 — выполнить перетрансляцию header файлов с описаниями процедур, структур и констант API Win32 из нотации принятой в языке Си, в нотацию выбранного режима ассемблера: Ideal или MASM.\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 В результате у Вас появится возможность писать лёгкие и изящные приложения под Win32, с помощью которых Вы сможете создавать и визуальные формы, и работать с базами данных, и обслуживать коммуникации, и работать multimedia инструментами. Как и при написании программ под DOS, у Вас сохраняется возможность наиболее полного использования ресурсов процессора, но при этом сложность написания приложений значительно снижается за счёт более мощного сервиса операционной системы, использования более удобной системы адресации и весьма простого оформления программ.\par
+\par
+\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0 Приложение 1. Файлы, необходимые для первого примера\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл констант ресурсов resource.inc\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IDD_DIALOG   =      65     ; 101\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IDR_NAME     =      3E8    ; 1000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IDC_STATIC   =      -1\par
+\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл заголовков resource.h\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #define IDD_DIALOG                      101\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #define IDR_NAME                        1000\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #define IDC_STATIC                      -1\par
+\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл определений dlg.def\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 NAME         TEST\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DESCRIPTION  'Demo dialog'\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 EXETYPE      WINDOWS\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 EXPORTS      DlgProc                    @1\par
+\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл компиляции makefile\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #   Make file for Demo dialog\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #       make -B\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 NAME   = dlg\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 OBJS   = $(NAME).obj\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DEF    = $(NAME).def\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 RES    = $(NAME).res\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMOPT=/m3 /mx /z /q /DWINVER=0400 /D_WIN32_WINNT=0400\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !if $d(DEBUG)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMDEBUG=/zi\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 LINKDEBUG=/v\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !else\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMDEBUG=/l\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 LINKDEBUG=\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !endif\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !if $d(MAKEDIR)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IMPORT=$(MAKEDIR)\\..\\lib\\import32\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !else\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IMPORT=import32\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !endif\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 $(NAME).EXE: $(OBJS) $(DEF) $(RES)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        tlink32 /Tpe /aa /c $(LINKDEBUG) $(OBJS),$(NAME),, $(IMPORT), $(DEF), $(RES)\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 .asm.obj:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        tasm32 $(TASMDEBUG) $(TASMOPT) $&.asm\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 $(RES): $(NAME).RC\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        BRCC32 -32 $(NAME).RC\par
+\par
+\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0 Приложение 2. Файлы, необходимые для второго примера\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл описания mylib.def\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 LIBRARY      MYLIB\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DESCRIPTION  'DLL EXAMPLE, 1997'\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 EXPORTS      Hex2Str             @1\par
+\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл компиляции makefile\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #   Make file for Demo DLL#   make –B#   make –B –DDEBUG for debug information\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 NAME   = mylib\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 OBJS   = $(NAME).obj\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DEF    = $(NAME).def\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 RES    = $(NAME).res\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMOPT=/m3 /mx /z /q /DWINVER=0400 /D_WIN32_WINNT=0400\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !if $d(DEBUG)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMDEBUG=/zi\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 LINKDEBUG=/v\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !else\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMDEBUG=/l\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 LINKDEBUG=\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !endif\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !if $d(MAKEDIR)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IMPORT=$(MAKEDIR)\\..\\lib\\import32\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !else\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IMPORT=import32\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !endif\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 $(NAME).EXE: $(OBJS) $(DEF)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        tlink32 /Tpd /aa /c $(LINKDEBUG) $(OBJS),$(NAME),, $(IMPORT), $(DEF)\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 .asm.obj:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        tasm32 $(TASMDEBUG) $(TASMOPT) $&.asm\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 $(RES): $(NAME).RC\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        BRCC32 -32 $(NAME).RC\par
+\par
+\s2 \qc\snext0\b\f0\fs28\fi0\li0\ri0 Приложение 3. Файлы, необходимые для третьего примера\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл описания dmenu.def\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 NAME         TEST\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DESCRIPTION  'Demo menu'\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 EXETYPE      WINDOWS\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 EXPORTS      WndProc                    @1\par
+\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл ресурсов dmenu.rc\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #include "resource.h\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 "MyMenu MENU DISCARDABLE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 BEGIN    POPUP "Files"\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0     BEGIN\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0         MENUITEM "Open",                        ID_OPEN\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0         MENUITEM "Save",                        ID_SAVE\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0         MENUITEM SEPARATOR\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0         MENUITEM "Exit",                        ID_EXIT\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0     END\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0     MENUITEM "Other",                           65535\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 END\par
+\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл заголовков resource.h\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #define MyMenu                          101\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #define ID_OPEN                         40001\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #define ID_SAVE                         40002\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #define ID_EXIT                         40003\par
+\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s6 \qc\snext0\s6\f1\b\fs24\fi0 Файл компиляции makefile\par
+\s0 \ql\snext0\f1\fs24\b0\i0\fi567\sb0\sa0\li0\ri0 \par\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #   Make file for Turbo Assembler Demo menu\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #       make –B\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 #       make -B -DDEBUG -DVERN    for debug information and version\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 NAME   = dmenu\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 OBJS   = $(NAME).obj\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 DEF    = $(NAME).def\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 RES    = $(NAME).res\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !if $d(DEBUG)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMDEBUG=/zi\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 LINKDEBUG=/v\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !else\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMDEBUG=/l\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 LINKDEBUG=\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !endif\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !if $d(VER2)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMVER=/dVER2\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !elseif $d(VER3)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMVER=/dVER3\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !else\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 TASMVER=/dVER1\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !endif\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !if $d(MAKEDIR)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IMPORT=$(MAKEDIR)\\..\\lib\\import32\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !else\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 IMPORT=import32\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 !endif\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 $(NAME).EXE: $(OBJS) $(DEF) $(RES)\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        tlink32 /Tpe /aa /c $(LINKDEBUG) $(OBJS),$(NAME),, $(IMPORT), $(DEF), $(RES)\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 .asm.obj:\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        tasm32 $(TASMDEBUG) $(TASMVER) /m /mx /z /zd $&.asm\par
+\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0 $(RES): $(NAME).RC\par
+\s0 \qj\snext0\f1\fs24\b0\i0\fi567\li0\ri0        BRCC32 -32 $(NAME).RC\par
+\par
+
+\s0 \f0\qc\fi0\li0\ri0 Спасибо, что скачали книгу в 
+{\field{\*\fldinst{HYPERLINK "https://royallib.com" }}{\fldrslt \ul бесплатной электронной библиотеке Royallib.com}}
+\par
+
+\s0 \f0\qc\fi0\li0\ri0 
+{\field{\*\fldinst{HYPERLINK "https://royallib.com/comment/usov_aleksandr/assembler__win32.html" }}{\fldrslt \ul Оставить отзыв о книге}}
+\par
+
+\s0 \f0\qc\fi0\li0\ri0 
+{\field{\*\fldinst{HYPERLINK "https://royallib.com/author/usov_aleksandr.html" }}{\fldrslt \ul Все книги автора}}
+\par
+
+}
