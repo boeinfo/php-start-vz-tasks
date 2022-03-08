@@ -1,0 +1,44 @@
+/* 
+    Created on : 8 мар. 2022 г., 20:05:38
+    Author     : Oleg Baranchikov
+*/
+
+.book_block {
+    background-color: lightgray;
+    margin: 0 auto;
+    max-width: 95%;
+    padding: 10px 10px;
+}
+
+.book_block-left {
+    float: left;
+    max-width: 40%;    
+}
+
+.book_block-right {
+    max-width: 60%;
+    padding: 10px 10px;
+    padding-bottom: 30px;
+}
+
+.book_icon {
+    display: inline-block;
+    max-width: 80px;
+}
+
+.book_file {
+    font-size: 0.8em;
+    word-wrap: break-word;
+    word-break: break-all;
+    width: 80%;
+    overflow-wrap: break-word;
+}
+
+.book_info span {
+    margin-right: 20px;
+}
+
+.book_link {
+    margin-top: 20px;
+}
+
